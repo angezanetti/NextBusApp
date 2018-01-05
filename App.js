@@ -6,12 +6,18 @@ export default class NextBus extends Component {
     super(props);
 	// Setup default value for nextBus
     this.state = {
-      nextBus: 'n/a'
+      nextBus: 'n/a',
+	  firstTime: 1
     }
   }
   componentDidMount() {
-	// Fetch the API evey 30 secs
-	this.timer = setInterval(()=> this.getBusData(), 30000)
+	if (this.state.firstTime == 1) {
+	  this.timer = setInterval(()=> this.getBusData(), 1000)
+	  this.state.firstTime = 0;
+	} else {
+	  // Fetch the API evey 30 secs
+	  this.timer = setInterval(()=> this.getBusData(), 30000)
+	}
   }
 
   async getBusData() {
