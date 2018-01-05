@@ -52,7 +52,7 @@ export default class NextBus extends Component {
 }
 const styles = StyleSheet.create({
   bigblue: {
-    color: '#463AA0',
+    color: '#E9D95A',
     fontWeight: 'bold',
     fontSize: 25,
 	marginTop: 20
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
 	width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: '#BEEF5D',
+    backgroundColor: '#E9D95A',
   },
   innerText: {
 	marginTop: 30,
 	marginLeft: 50,
 	width: 100,
 	fontSize: 60,
-    color: '#463AA0',
+    color: '#21717C',
 	textAlign: 'center'
   },
   container: {
@@ -76,6 +76,6 @@ const styles = StyleSheet.create({
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
-	backgroundColor: '#96E0D6'
+	backgroundColor: '#21717C'
     }
 });
