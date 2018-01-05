@@ -1,23 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { ActivityIndicator, ListView, Text, View } from 'react-native';
 
-export default class App extends React.Component {
+export default class NextBus extends Component {
+  componentDidMount() {
+    return fetch('http://restbus.info/api/agencies/sf-muni/routes/24/stops/4326/predictions')
+      .then((response) => response.json())
+      .then((responseJson) => {
+		let nextBus = responseJson[0].values[0].minutes;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+	  <Text>Hello world! {this.nextBus}</Text>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
