@@ -29,7 +29,10 @@ export default class NextBus extends Component {
 	  //Set the values of the 2 next bus time
 	  this.setState({
 		nextBus: responseJson[0].values[0].minutes,
-		next2Bus: responseJson[0].values[1].minutes
+		next2Bus: responseJson[0].values[1].minutes,
+		route: responseJson[0].route.id,
+		direction: responseJson[0].values[0].direction.title,
+		stop: responseJson[0].stop.title,
 	  });
 	  return this.setState;
 	} catch (error) {
@@ -41,17 +44,25 @@ export default class NextBus extends Component {
 	if (this.state.nextBus) {
 	  return (
 		<View style={styles.container}>
+		  <Text style={styles.routeInfo}>{this.state.route} {this.state.direction} →</Text>
+		  <Text style={styles.routeInfo}>{this.state.stop}</Text>
 		  <View style={styles.outerCircle}>
 			<Text style={styles.innerText}>{this.state.nextBus} min</Text>
 		  </View>
-		  <Text style={styles.bigblue}>The bus after: {this.state.next2Bus} min</Text>
+		  <Text style={styles.busAfter}>The bus after: {this.state.next2Bus} min</Text>
 		</View>
 	  );
 	}
   }
 }
 const styles = StyleSheet.create({
-  bigblue: {
+  routeInfo: {
+    color: '#E9D95A',
+    fontWeight: 'bold',
+    fontSize: 15,
+	marginBottom: 10
+  },
+  busAfter: {
     color: '#E9D95A',
     fontWeight: 'bold',
     fontSize: 25,
