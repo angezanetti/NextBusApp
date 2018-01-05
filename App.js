@@ -41,13 +41,10 @@ export default class NextBus extends Component {
 	if (this.state.nextBus) {
 	  return (
 		<View style={styles.container}>
-		  <View style={styles.topBox}>
-			<Text style={styles.headline}>Next bus: </Text>
-		  </View>
 		  <View style={styles.outerCircle}>
-			<Text style={styles.innerText}>{this.state.nextBus}</Text>
+			<Text style={styles.innerText}>{this.state.nextBus} min</Text>
 		  </View>
-		  <Text style={styles.bigblue}>The bus after: {this.state.next2Bus}</Text>
+		  <Text style={styles.bigblue}>The bus after: {this.state.next2Bus} min</Text>
 		</View>
 	  );
 	}
@@ -55,22 +52,23 @@ export default class NextBus extends Component {
 }
 const styles = StyleSheet.create({
   bigblue: {
-    color: 'blue',
+    color: '#463AA0',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 25,
 	marginTop: 20
   },
   outerCircle: {
 	width: 200,
     height: 200,
     borderRadius: 100,
-    backgroundColor: 'grey',
+    backgroundColor: '#BEEF5D',
   },
   innerText: {
-	marginTop: 60,
+	marginTop: 30,
 	marginLeft: 50,
 	width: 100,
 	fontSize: 60,
+    color: '#463AA0',
 	textAlign: 'center'
   },
   container: {
@@ -78,5 +76,6 @@ const styles = StyleSheet.create({
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
+	backgroundColor: '#96E0D6'
     }
 });
