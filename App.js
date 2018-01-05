@@ -40,9 +40,14 @@ export default class NextBus extends Component {
   render() {
 	if (this.state.nextBus) {
 	  return (
-		<View style={{flex: 1, paddingTop: 20}}>
-		<Text style={styles.bigblue}>Next bus 24: {this.state.nextBus}</Text>
-		<Text style={styles.bigblue}>The one after: {this.state.next2Bus}</Text>
+		<View style={styles.container}>
+		  <View style={styles.topBox}>
+			<Text style={styles.headline}>Next bus: </Text>
+		  </View>
+		  <View style={styles.outerCircle}>
+			<Text style={styles.innerText}>{this.state.nextBus}</Text>
+		  </View>
+		  <Text style={styles.bigblue}>The bus after: {this.state.next2Bus}</Text>
 		</View>
 	  );
 	}
@@ -53,5 +58,25 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 30,
-  }
+	marginTop: 20
+  },
+  outerCircle: {
+	width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: 'grey',
+  },
+  innerText: {
+	marginTop: 60,
+	marginLeft: 50,
+	width: 100,
+	fontSize: 60,
+	textAlign: 'center'
+  },
+  container: {
+	flex: 1,
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center',
+    }
 });
