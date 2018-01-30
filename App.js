@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-export default class NextBus extends Component {
+class HomeScreen extends Component {
   constructor(props) {
     super(props);
 	// Setup default value for nextBus
@@ -48,11 +48,15 @@ export default class NextBus extends Component {
         return this.setState;
 	}
   }
-
+  static navigationOptions = {
+      title: 'Welcome',
+  };
   render() {
 	if (this.state.nextBus) {
-	  return (
+        const { navigate } = this.props.navigation;
+        return (
 		<View style={styles.container}>
+          <Button onPress={() => navigate('Settings')} title="Settings" />
 		  <Text style={styles.routeInfo}>{this.state.route} {this.state.direction} →</Text>
 		  <Text style={styles.routeInfo}>{this.state.stop}</Text>
 
@@ -66,6 +70,31 @@ export default class NextBus extends Component {
 	}
   }
 }
+
+class SettingsScreen extends Component {
+    static navigationOptions = {
+        title: "Let's change the bus stops!",
+    };
+    render() {
+        return (
+            <View>
+                <Text>Chat with Lucy</Text>
+            </View>
+        );
+    }
+}
+
+const SimpleApp = StackNavigator({
+    Home: { screen: HomeScreen },
+    Settings: { screen: SettingsScreen }
+});
+
+export default class App extends Component {
+    render() {
+        return <SimpleApp />;
+    }
+}
+
 const styles = StyleSheet.create({
   routeInfo: {
     color: '#E9D95A',
