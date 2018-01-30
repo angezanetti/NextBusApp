@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 export default class NextBus extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class NextBus extends Component {
     }
   }
   componentDidMount() {
-	if (this.state.firstTime == 1) {
+	if (this.state.firstTime === 1) {
 	  this.timer = setInterval(()=> this.getBusData(), 1000)
 	  this.state.firstTime = 0;
 	} else {
@@ -36,7 +37,15 @@ export default class NextBus extends Component {
 	  });
 	  return this.setState;
 	} catch (error) {
-	  console.error(error);
+	  // If we can't parse the data then we set them to n/a
+        this.setState({
+            nextBus: 'n/a',
+            next2Bus: 'n/a',
+            route: 'n/a',
+            direction: 'n/a',
+            stop: 'n/a',
+        });
+        return this.setState;
 	}
   }
 
@@ -46,9 +55,11 @@ export default class NextBus extends Component {
 		<View style={styles.container}>
 		  <Text style={styles.routeInfo}>{this.state.route} {this.state.direction} →</Text>
 		  <Text style={styles.routeInfo}>{this.state.stop}</Text>
+
 		  <View style={styles.outerCircle}>
 			<Text style={styles.innerText}>{this.state.nextBus} min</Text>
 		  </View>
+
 		  <Text style={styles.busAfter}>The bus after: {this.state.next2Bus} min</Text>
 		</View>
 	  );
